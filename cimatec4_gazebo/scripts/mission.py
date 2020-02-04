@@ -149,40 +149,42 @@ class Camera:
   
   def goal_move_base(self, center_ball, radius):
     distance = (1 * self.focalLength) / (radius * 2)
-    # if (distance >= 6.0 and not self.flag_kill):
-    y_move_base = -(center_ball - self.camera_info.width/2) / (radius*2) 
-    if abs(y_move_base) < 0.006:
-      x_move_base = distance
-    else:
-      x_move_base = math.sqrt(distance**2 - y_move_base**2)
-    self.msg_move_to_goal.pose.position.x = x_move_base
-    self.msg_move_to_goal.pose.position.y = y_move_base
-    self.msg_move_to_goal.pose.orientation.w = 1
-    self.msg_move_to_goal.header.frame_id = self.camera_info.header.frame_id
-    if self.flag:
+    if distance < 2.0:
+      self.flag_kill = True
       self.cancel_explore.publish()
       self.cancel_map.publish()
-      os.system("rosnode kill /Operator")
-      print('enviando goal')
-      self.pub_move_to_goal.publish(self.msg_move_to_goal)
-      self.flag = False
-      self.timer_flag = time.time()
-    if time.time() - self.timer_flag > 10:
-      self.flag = True      
-    print('distance to sphere: ' + str(distance))
-    print('INCREMENTO X: ' + str(x_move_base))
-    print('INCREMENTO Y: ' + str(y_move_base))
+      os.system("rostopic pub /move_base/cancel actionlib_msgs/GoalID -- {}")
+      tws = Twist()
+      tws.linear.x = 0.0
+      tws.angular.z = 0.0
+      self.velocity_publisher.publish(tws)
+      print('Esfera a 2.0 m de distancia maxima')
 
-    # if distance < 6.0:
-    #   self.flag_kill = True
-    #   self.cancel_explore.publish()
-    #   self.cancel_map.publish()
-    #   os.system("rostopic pub /move_base/cancel actionlib_msgs/GoalID -- {}")
-    #   tws = Twist()
-    #   tws.linear.x = 0.0
-    #   tws.angular.z = 0.0
-    #   self.velocity_publisher.publish(tws)
-    #   print('Esfera a 6.0 m de distancia maxima')
+    if (distance >= 2.0 and not self.flag_kill):
+      y_move_base = -(center_ball - self.camera_info.width/2) / (radius*2) 
+      if abs(y_move_base) < 0.006:
+        x_move_base = distance
+      else:
+        x_move_base = math.sqrt(distance**2 - y_move_base**2)
+      self.msg_move_to_goal.pose.position.x = x_move_base
+      self.msg_move_to_goal.pose.position.y = y_move_base
+      self.msg_move_to_goal.pose.orientation.w = 1
+      self.msg_move_to_goal.header.frame_id = self.camera_info.header.frame_id
+      if self.flag:
+        self.cancel_explore.publish()
+        self.cancel_map.publish()
+        os.system("rosnode kill /Operator")
+        print('enviando goal')
+        self.pub_move_to_goal.publish(self.msg_move_to_goal)
+        self.flag = False
+        self.timer_flag = time.time()
+      if time.time() - self.timer_flag > 10:
+        self.flag = True      
+      print('distance to sphere: ' + str(distance))
+      print('INCREMENTO X: ' + str(x_move_base))
+      print('INCREMENTO Y: ' + str(y_move_base))
+
+
       
 
 
