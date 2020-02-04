@@ -109,3 +109,32 @@ The first thing to do is measure the world we're going to build. In this case, I
 
 ### .2. Build the world as a model file
 
+## . References
+
+### .1. Softwares
+
+* [ROS Framework - Melodic Distribution](http://wiki.ros.org/) - This framework includes [Gazebo](http://gazebosim.org/) and [RViz](http://wiki.ros.org/rviz).
+
+* [OnShape](https://onshape.com)
+
+### .2. Packages
+
+* [Simulating Husky](https://www.clearpathrobotics.com/assets/guides/husky/SimulatingHusky.html)
+
+* [PointCloud to LaserScan](http://wiki.ros.org/pointcloud_to_laserscan)
+
+* [Velodyne Simulation and Plugins](https://bitbucket.org/DataspeedInc/velodyne_simulator/src/master/)
+
+* [nav2d](http://wiki.ros.org/nav2d/)
+
+### .3. Knowledge references
+
+* [OpenCV with ROS using Python](https://dabit-industries.github.io/turtlebot2-tutorials/14b-OpenCV2_Python.html)
+
+* [Detecting Circles in Images using OpenCV and Hough Circles](https://www.pyimagesearch.com/2014/07/21/detecting-circles-images-using-opencv-hough-circles/)
+
+* [Detecting circular shapes using contours](http://layer0.authentise.com/detecting-circular-shapes-using-contours.html)
+
+
+
+
