@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="laser_enabled" default="false"/>
+  <arg name="kinect_enabled" default="false"/>
+  <arg name="urdf_extras" default="$(find cimatec4_gazebo)/urdf/VLP-16call.urdf.xacro"/>
+
+  <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+  <arg name="verbose"       default="true"/>
+  <arg name="paused"        default="false"/>
+  <arg name="use_sim_time"  default="true"/>
+  <arg name="gui"           default="true"/>
+  <arg name="headless"      default="false"/>
+  <arg name="debug"         default="false"/>
+  <!-- <arg name="robot_model"   default="$(find learnrobotics)/model/urdf/robot.xacro"/> -->
+
+  <!-- Add the model path to the gazebo library-->
+  <env name="GAZEBO_MODEL_PATH" value="${GAZEBO_MODEL_PATH}:$(find cimatec4_gazebo)/model"/>
+  <env name="GAZEBO_RESOURCE_PATH" value="${GAZEBO_RESOURCE_PATH}:$(find cimatec4_gazebo)/model"/>
+
+
+  <!-- We resume the logic in empty_world.launch -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name"    value="$(find cimatec4_gazebo)/world/cimatec.world"/>
+    <arg name="debug"         value="$(arg debug)" />
+    <arg name="gui"           value="$(arg gui)" />
+    <arg name="paused"        value="$(arg paused)"/>
+    <arg name="use_sim_time"  value="$(arg use_sim_time)"/>
+    <arg name="headless"      value="$(arg headless)"/>
+    <arg name="verbose"       value="$(arg verbose)"/>
+  </include>
+
+
+  <!-- Spawn Husky in the origin-->
+  <include file="$(find cimatec4_gazebo)/launch/spawn_husky.launch">
+    <arg name="laser_enabled" value="$(arg laser_enabled)"/>
+    <arg name="kinect_enabled" value="$(arg kinect_enabled)"/>
+    <arg name="urdf_extras" default="$(arg urdf_extras)"/>
+  </include>
+
+  <!-- Run RViz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find cimatec4_gazebo)/rviz/robot.rviz" output="screen"/>
+
+  <!-- Converting PointCloud2 to LaserScan-->
+  <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan_node" args="cloud_in:=/velodyne_points" />
+
+
+  <!--- Run gmapping -->
+  <include file="$(find cimatec4_gazebo)/launch/gmapping.launch" />
+  <!--- Run Move Base -->
+  <include file="$(find husky_navigation)/launch/move_base.launch" />
+
+
+  <!-- Autonomous Mapping-->
+  <include file="$(find cimatec4_gazebo)/launch/mapping.launch"/>
+
+    <!-- Map data-->
+  <!-- <arg name="map_file" default="$(find cimatec4_gazebo)/map/mapa.yaml"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" /> -->
+
+
+
+
+
+</launch>
