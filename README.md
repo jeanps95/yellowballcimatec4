@@ -97,9 +97,9 @@ Registering Scans:Done
 
 Then, it's going to map, navigate, and search the yellow ball in the map.
 
-## . Methodology
+## 2. Methodology
 
-### .1. Measure the world
+### 2.1. Measure the world
 
 The first thing to do is measure the world we're going to build. In this case, I'm using a satellite picture from Google Earth software of the area and I visited the area multiple times with a desired measure tool. These are the pictures of the process:
 
@@ -107,7 +107,17 @@ The first thing to do is measure the world we're going to build. In this case, I
 
 ![](cimatec4_gazebo/img/blueprint.png)
 
-### .2. Build the world as a model file
+### 2.2. Build the world as a model file
+
+Using a CAD software (in this case OnShape), we build the external area and save as a Collada file (.dae). Remember to assign values of color and material.
+
+![](cimatec4_gazebo/img/OnShape.png)
+
+If you are interest in a more detailed tutorial about this world you can find in this link:
+
+### 2.3. Use an autonomous robot to navigate the area (Husky)
+
+
 
 ## . References
 
