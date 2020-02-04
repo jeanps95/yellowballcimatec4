@@ -104,7 +104,7 @@ class Camera:
       centers.append(aux1)
       radius.append(aux2)
       ## if the camera find the sphere ##
-      if(len(contours_poly[index]) > 12):
+      if(len(contours_poly[index]) > 8):
         # draw a circle in sphere and put a warning message
         cv2.circle(cv2_frame, (int(centers[index][0]), int(centers[index][1])), int(radius[index]), (0, 0, 255), 5) 
         cv2.putText(cv2_frame, 'BOMB HAS BEEN DETECTED!', (20, 130), font, 2, (0, 0, 255), 5)
