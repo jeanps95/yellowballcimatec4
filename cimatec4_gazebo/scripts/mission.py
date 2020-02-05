@@ -59,7 +59,7 @@ class Camera:
     self.cancel_explore = rospy.Publisher("/Explore/cancel", GoalID, queue_size = 1)
     time.sleep(1)
     self.start_map.publish()
-    time.sleep(5)
+    time.sleep(20)
     self.cancel_map.publish()
     time.sleep(2)
     self.start_explore.publish()
@@ -149,7 +149,7 @@ class Camera:
   
   def goal_move_base(self, center_ball, radius):
     distance = (1 * self.focalLength) / (radius * 2)
-    if distance < 2.0:
+    if distance < 3.5:
       self.flag_kill = True
       self.cancel_explore.publish()
       self.cancel_map.publish()
@@ -160,7 +160,7 @@ class Camera:
       self.velocity_publisher.publish(tws)
       print('Esfera a 2.0 m de distancia maxima')
 
-    if (distance >= 2.0 and not self.flag_kill):
+    if (distance >= 3.5 and not self.flag_kill):
       y_move_base = -(center_ball - self.camera_info.width/2) / (radius*2) 
       if abs(y_move_base) < 0.006:
         x_move_base = distance
