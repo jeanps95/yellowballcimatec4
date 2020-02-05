@@ -117,17 +117,29 @@ If you are interest in a more detailed tutorial about this world you can find in
 
 ### 2.3. Use an autonomous robot to navigate the area (Husky)
 
+By installing the packages of Robot Husky from Clearpath, we can modify the parameters of navigation and mapping to better suit our sensors and goals.
 
+### 2.4. Detection
 
-## . References
+Using Velodyne VLP-16 to generate a PointCloud (that later will be converted to LaserScan information), the Husky can navigate in the map. The goal detection is made with a camera, with native plugins in gazebo library.
 
-### .1. Softwares
+![](cimatec4_gazebo/img/Husky.png)
 
-* [ROS Framework - Melodic Distribution](http://wiki.ros.org/) - This framework includes [Gazebo](http://gazebosim.org/) and [RViz](http://wiki.ros.org/rviz).
+### 2.5. Goal
+
+The final goal is to incorporate all these factors to find a yellow ball in the map.
+
+![](cimatec4_gazebo/img/Objective.png)
+
+## 3. References
+
+### 3.1. Softwares
+
+* [ROS Framework - Melodic Distribution](http://wiki.ros.org/) - This framework includes [Gazebo](http://gazebosim.org/), [RViz](http://wiki.ros.org/rviz) and [OpenCV](https://opencv.org).
 
 * [OnShape](https://onshape.com)
 
-### .2. Packages
+### 3.2. Packages
 
 * [Simulating Husky](https://www.clearpathrobotics.com/assets/guides/husky/SimulatingHusky.html)
 
@@ -137,7 +149,7 @@ If you are interest in a more detailed tutorial about this world you can find in
 
 * [nav2d](http://wiki.ros.org/nav2d/)
 
-### .3. Knowledge references
+### 3.3. Knowledge references
 
 * [OpenCV with ROS using Python](https://dabit-industries.github.io/turtlebot2-tutorials/14b-OpenCV2_Python.html)
 
