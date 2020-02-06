@@ -97,9 +97,9 @@ Registering Scans:Done
 
 Then, it's going to map, navigate, and search the yellow ball in the map.
 
-## 2. Methodology
+## 3. Methodology
 
-### 2.1. Measure the world
+### 3.1. Measure the world
 
 The first thing to do is measure the world we're going to build. In this case, I'm using a satellite picture from Google Earth software of the area and I visited the area multiple times with a desired measure tool. These are the pictures of the process:
 
@@ -107,7 +107,7 @@ The first thing to do is measure the world we're going to build. In this case, I
 
 ![](cimatec4_gazebo/img/blueprint.png)
 
-### 2.2. Build the world as a model file
+### 3.2. Build the world as a model file
 
 Using a CAD software (in this case OnShape), we build the external area and save as a Collada file (.dae). Remember to assign values of color and material.
 
@@ -115,31 +115,31 @@ Using a CAD software (in this case OnShape), we build the external area and save
 
 If you are interest in a more detailed tutorial about this world you can find in this link:
 
-### 2.3. Use an autonomous robot to navigate the area (Husky)
+### 3.3. Use an autonomous robot to navigate the area (Husky)
 
 By installing the packages of Robot Husky from Clearpath, we can modify the parameters of navigation and mapping to better suit our sensors and goals.
 
-### 2.4. Detection
+### 3.4. Detection
 
 Using Velodyne VLP-16 to generate a PointCloud (that later will be converted to LaserScan information), the Husky can navigate in the map. The goal detection is made with a camera, with native plugins in gazebo library.
 
 ![](cimatec4_gazebo/img/Husky.png)
 
-### 2.5. Goal
+### 3.5. Goal
 
 The final goal is to incorporate all these factors to find a yellow ball in the map.
 
 ![](cimatec4_gazebo/img/Objective.png)
 
-## 3. References
+## 4. References
 
-### 3.1. Softwares
+### 4.1. Softwares
 
 * [ROS Framework - Melodic Distribution](http://wiki.ros.org/) - This framework includes [Gazebo](http://gazebosim.org/), [RViz](http://wiki.ros.org/rviz) and [OpenCV](https://opencv.org).
 
 * [OnShape](https://onshape.com)
 
-### 3.2. Packages
+### 4.2. Packages
 
 * [Simulating Husky](https://www.clearpathrobotics.com/assets/guides/husky/SimulatingHusky.html)
 
@@ -149,7 +149,7 @@ The final goal is to incorporate all these factors to find a yellow ball in the 
 
 * [nav2d](http://wiki.ros.org/nav2d/)
 
-### 3.3. Knowledge references
+### 4.3. Knowledge references
 
 * [OpenCV with ROS using Python](https://dabit-industries.github.io/turtlebot2-tutorials/14b-OpenCV2_Python.html)
 
